@@ -14,7 +14,7 @@ CREATE TABLE users (
 
 CREATE TABLE item (
     item_name VARCHAR(20) PRIMARY KEY,
-    price NUMERIC(10, 2) NOT NULL
+    price NUMERIC(10,2) NOT NULL
 );
 
 INSERT INTO item (item_name, price) VALUES
@@ -35,6 +35,6 @@ CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY,
     mobile VARCHAR(10) NOT NULL,
     date DATE NOT NULL,
-    bill NUMERIC(10, 2) NOT NULL,
+    bill NUMERIC(10,2) NOT NULL,
     FOREIGN KEY (mobile) REFERENCES users(mobile)
 );
