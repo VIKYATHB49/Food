@@ -13,8 +13,8 @@ services:
       DB_HOST: db
       DB_PORT: 5432
       DB_NAME: food_delivery
-      DB_USER: user
-      DB_PASSWORD: password
+      DB_USER: vikyath
+      DB_PASSWORD: 5Qh2Moxxb3PLt95JiZCuAmWFFQ1vn4QZ
     volumes:
       - ./HTML:/usr/local/tomcat/webapps/ROOT/HTML
       - ./JS:/usr/local/tomcat/webapps/ROOT/JS
@@ -26,13 +26,13 @@ services:
     image: postgres:15
     container_name: postgres-container
     ports:
-      - "5433:5432"    # external port:container port
+      - "5432:5432"    # match internal PostgreSQL port
     environment:
       POSTGRES_DB: food_delivery
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: vikyath
+      POSTGRES_PASSWORD: 5Qh2Moxxb3PLt95JiZCuAmWFFQ1vn4QZ
     volumes:
-      - ./SQL/init.sql:/docker-entrypoint-initdb.d/init.sql:ro  # ensure read-only
+      - ./SQL/init.sql:/docker-entrypoint-initdb.d/init.sql:ro  # init.sql will run automatically on first startup
       - postgres-data:/var/lib/postgresql/data   # persistent storage
 
 volumes:
