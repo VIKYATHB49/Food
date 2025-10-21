@@ -1,11 +1,3 @@
--- PostgreSQL version of food_delivery database
-
--- Database creation (Render/Postgres service already creates the DB automatically)
--- You can skip CREATE DATABASE and USE statements in Render/PostgreSQL.
--- But if you run locally, uncomment these:
--- CREATE DATABASE food_delivery;
--- \c food_delivery;
-
 CREATE TABLE users (
     name VARCHAR(20) NOT NULL,
     mobile VARCHAR(10) PRIMARY KEY,
