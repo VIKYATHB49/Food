@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   web-app:
     build:
@@ -24,10 +26,14 @@ services:
     image: postgres:15
     container_name: postgres-container
     ports:
-      - "5433:5432"
+      - "5433:5432"    # external port:container port
     environment:
       POSTGRES_DB: food_delivery
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     volumes:
-      - ./SQL/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./SQL/init.sql:/docker-entrypoint-initdb.d/init.sql:ro  # ensure read-only
+      - postgres-data:/var/lib/postgresql/data   # persistent storage
+
+volumes:
+  postgres-data:
