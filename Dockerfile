@@ -1,10 +1,13 @@
 # Use official Tomcat image with JDK 17
 FROM tomcat:9.0.98-jdk17
 
-# Set working directory to ROOT
+# Disable Tomcat shutdown port to avoid "Invalid shutdown command" warnings
+RUN sed -i 's/port="8005"/port="-1"/' /usr/local/tomcat/conf/server.xml
+
+# Set working directory to ROOT webapp
 WORKDIR /usr/local/tomcat/webapps/ROOT/
 
-# Copy all project files
+# Copy project files
 COPY ./HTML ./HTML
 COPY ./CSS ./CSS
 COPY ./JS ./JS
