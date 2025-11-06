@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  web-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: food_delivery
+      DB_USER: vikyath
+      DB_PASSWORD: 5Qh2Moxxb3PLt95JiZCuAmWFFQ1vn4QZ
+    volumes:
+      - ./HTML:/usr/local/tomcat/webapps/ROOT/HTML
+      - ./JS:/usr/local/tomcat/webapps/ROOT/JS
+      - ./CSS:/usr/local/tomcat/webapps/ROOT/CSS
+      - ./IMAGES:/usr/local/tomcat/webapps/ROOT/IMAGES
+      - ./WEB-INF:/usr/local/tomcat/webapps/ROOT/WEB-INF
+
+  db:
+    image: postgres:15
+    container_name: postgres-container
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: food_delivery
+      POSTGRES_USER: vikyath
+      POSTGRES_PASSWORD: 5Qh2Moxxb3PLt95JiZCuAmWFFQ1vn4QZ
+    volumes:
+      - ./SQL/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
